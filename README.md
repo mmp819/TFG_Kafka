@@ -5,7 +5,22 @@ Material desarrollado y empleado a lo largo del Trabajo de Fin de Grado: *Diseñ
 
 ## Estructura del repositorio:
 * **Certificados Kafka**: Certificados utilizados para autenticar a los *principals* de Kafka. Se encuentran divididos en carpetas para cada *principal*.
-* **Configuraciones**: Ficheros de configuración *.yml* y *.properties* utilizados para configurar Kafka y otras tecnologías conectadas.
+
+  Autoridades de Certificación:
+  - BrokersCA
+  - ClientesCA
+  
+  *Principals*:
+  - mario (Broker1)
+  - Admin (Administrador)
+  - Druid
+  - Productor
+  - Spark-Cassandra
+* **Configuraciones**: Ficheros *.yml* y *.properties* utilizados para configurar Kafka y otras tecnologías conectadas.
+  - Exporter
+  - Kafka
+  - Prometheus
+  - Zookeeper
 * **DashboardsGrafana**: Cuadros de mando elaborados con Grafana para la monitorización de Kafka y la visualización de datos del *dataset* MetroPT.
 * **KttmSpark**: Programa Spark utilizado para el *dataset* del juego web, *Koalas to the Max*.
 * **ProductorJavaGeneric**: Programa Java encargado de leer un fichero de datos como parámetro y mandar sus filas al tópico indicado de Kafka.
