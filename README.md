@@ -25,3 +25,9 @@ Material desarrollado y empleado a lo largo del Trabajo de Fin de Grado: *Diseñ
 * **KttmSpark**: Programa Spark utilizado para el *dataset* del juego web, *Koalas to the Max*.
 * **ProductorJavaGeneric**: Programa Java encargado de leer un fichero de datos como parámetro y mandar sus filas al tópico indicado de Kafka.
 * **TrainSpark**: Programa Spark utilizado para el *dataset* MetroPT.
+
+------------------------------------------
+
+## Arquitectura y solución software empleada:
+
+![](Arquitectura-SolucionSwPropuesta.png)
