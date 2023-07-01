@@ -1,0 +1,7 @@
+es/unican/martinm/kttmSpark/cassandra/CassandraConnectionPool.class
+es/unican/martinm/kttmSpark/domain/GeoIP.class
+es/unican/martinm/kttmSpark/domain/Event.class
+es/unican/martinm/kttmSpark/domain/Agent.class
+es/unican/martinm/kttmSpark/domain/KttmKafka.class
+es/unican/martinm/kttmSpark/serializers/CustomLanguageDeserializerJSON.class
+es/unican/martinm/kttmSpark/spark/KttmMain.class

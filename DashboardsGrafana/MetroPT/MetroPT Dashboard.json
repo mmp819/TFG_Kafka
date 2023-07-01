@@ -1,0 +1,983 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 6,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5,
+      "panels": [],
+      "title": "Datos analógicos",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafadruid-druid-datasource",
+        "uid": "42vwUufVk"
+      },
+      "description": "Temperatura del aceite del compresor en grados Celsius.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Temperatura",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "points",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "C Oil_temperature"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "B Oil_temperature"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "C Temperatura_AlertaGPS"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "B Temperatura_Alerta_Presion"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Temperatura_Alerta_Presion Oil_temperature"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Temperatura_Alerta_GPS Oil_temperature"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alerta_Presion Oil_temperature"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, Oil_temperature FROM lecturas_filtradas WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, Oil_temperature FROM lecturas_filtradas WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "refId": "Sin_Alertas",
+          "settings": {}
+        },
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, Oil_temperature FROM lecturas_gps_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, Oil_temperature FROM lecturas_gps_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "hide": false,
+          "refId": "Alerta_GPS",
+          "settings": {}
+        },
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, Oil_temperature FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, Oil_temperature FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "hide": false,
+          "refId": "Alerta_Presion",
+          "settings": {}
+        }
+      ],
+      "title": "Temperatura del aceite",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafadruid-druid-datasource",
+        "uid": "42vwUufVk"
+      },
+      "description": "Presión generada en el panel neumático.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Bares",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "points",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "pressurebar"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "TP3_Alerta_Presion TP3"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alerta_Presion TP3"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, TP3 FROM lecturas_filtradas WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, TP3 FROM lecturas_filtradas WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "refId": "Sin_alertas",
+          "settings": {}
+        },
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, TP3 FROM lecturas_gps_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, TP3 FROM lecturas_gps_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "hide": false,
+          "refId": "Alerta_Gps",
+          "settings": {}
+        },
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, TP3 FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, TP3 FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "hide": false,
+          "refId": "Alerta_Presion",
+          "settings": {}
+        }
+      ],
+      "title": "Presión en válvula TP3  ",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 3,
+      "panels": [],
+      "title": "Señales digitales",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafadruid-druid-datasource",
+        "uid": "42vwUufVk"
+      },
+      "description": "Estado de la señal LPS, que se activa cuando la presión cae por debajo de los 7 bares.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-red",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 1.2,
+            "axisSoftMin": -0.2,
+            "barAlignment": 0,
+            "drawStyle": "points",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alerta_Presion LPS"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 12
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, LPS FROM lecturas_filtradas WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, LPS FROM lecturas_filtradas WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "hide": false,
+          "refId": "SIn_Alertas",
+          "settings": {}
+        },
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, LPS FROM lecturas_gps_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, LPS FROM lecturas_gps_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "hide": false,
+          "refId": "Alerta_GPS",
+          "settings": {}
+        },
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, LPS FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, LPS FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "refId": "Alerta_Presion",
+          "settings": {}
+        }
+      ],
+      "title": "LPS",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafadruid-druid-datasource",
+        "uid": "42vwUufVk"
+      },
+      "description": "Estado de la señal GPS. 1 = Señal, 0 = Falta de señal.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-red",
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Bares",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "points",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 3,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 1.2,
+          "min": -0.2,
+          "noValue": "1",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alerta_Presion gpsQuality"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alerta_GPS gpsQuality"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 12
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, gpsQuality FROM lecturas_filtradas WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, gpsQuality FROM lecturas_filtradas WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "refId": "SIn_Alertas",
+          "settings": {}
+        },
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, gpsQuality FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, gpsQuality FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "hide": false,
+          "refId": "Alerta_Presion",
+          "settings": {}
+        },
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, gpsQuality FROM lecturas_gps_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, gpsQuality FROM lecturas_gps_alert WHERE __time BETWEEN '2022-03-24T00:00:00' AND '2022-03-30T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "hide": false,
+          "refId": "Alerta_GPS",
+          "settings": {}
+        }
+      ],
+      "title": "GPS_QUALITY",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 8,
+      "panels": [],
+      "title": "Mapas",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "grafadruid-druid-datasource",
+        "uid": "42vwUufVk"
+      },
+      "description": "Mapa que muestras las posiciones geográficas donde se ha detectado una activación de la señal LPS.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 1,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "default"
+        },
+        "controls": {
+          "mouseWheelZoom": true,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "red"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "filterData": {
+              "id": "byRefId",
+              "options": "A"
+            },
+            "location": {
+              "latitude": "gpsLat",
+              "longitude": "gpsLong",
+              "mode": "coords"
+            },
+            "name": "Posiciones",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "coords",
+          "lat": 41.18067,
+          "lon": -8.619866,
+          "zoom": 12.53
+        }
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        {
+          "builder": {
+            "intervals": {
+              "intervals": [
+                "${__from:date:iso}/${__to:date:iso}"
+              ],
+              "type": "intervals"
+            },
+            "query": "SELECT __time, gpsLat, gpsLong, TP3 FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-02-10T00:00:00' AND '2022-02-15T00:00:00'",
+            "queryType": "sql"
+          },
+          "datasource": {
+            "type": "grafadruid-druid-datasource",
+            "uid": "42vwUufVk"
+          },
+          "expr": "{\"builder\":{\"queryType\":\"sql\",\"query\":\"SELECT __time, gpsLat, gpsLong, TP3 FROM lecturas_anomalas_alert WHERE __time BETWEEN '2022-02-10T00:00:00' AND '2022-02-15T00:00:00'\",\"intervals\":{\"type\":\"intervals\",\"intervals\":[\"${__from:date:iso}/${__to:date:iso}\"]}},\"settings\":{}}",
+          "refId": "A",
+          "settings": {}
+        }
+      ],
+      "title": "Averías",
+      "type": "geomap"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2022-01-01T21:57:02.000Z",
+    "to": "2022-01-15T13:50:03.000Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "MetroPT Dashboard",
+  "uid": "fab47264-020c-41c0-bdd1-26dfb0ee971e",
+  "version": 58,
+  "weekStart": ""
+}

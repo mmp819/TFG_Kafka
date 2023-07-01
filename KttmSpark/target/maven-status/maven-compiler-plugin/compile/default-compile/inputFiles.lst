@@ -1,0 +1,7 @@
+/home/mario/Escritorio/TFG/KttmSpark/src/main/java/es/unican/martinm/kttmSpark/spark/KttmMain.java
+/home/mario/Escritorio/TFG/KttmSpark/src/main/java/es/unican/martinm/kttmSpark/cassandra/CassandraConnectionPool.java
+/home/mario/Escritorio/TFG/KttmSpark/src/main/java/es/unican/martinm/kttmSpark/domain/GeoIP.java
+/home/mario/Escritorio/TFG/KttmSpark/src/main/java/es/unican/martinm/kttmSpark/domain/Event.java
+/home/mario/Escritorio/TFG/KttmSpark/src/main/java/es/unican/martinm/kttmSpark/domain/Agent.java
+/home/mario/Escritorio/TFG/KttmSpark/src/main/java/es/unican/martinm/kttmSpark/serializers/CustomLanguageDeserializerJSON.java
+/home/mario/Escritorio/TFG/KttmSpark/src/main/java/es/unican/martinm/kttmSpark/domain/KttmKafka.java

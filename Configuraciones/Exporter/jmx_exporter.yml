@@ -1,0 +1,89 @@
+# Reglas
+rules:
+  # Bytes entrantes por segundo
+  - pattern : kafka.server<type=BrokerTopicMetrics, name=BytesInPerSec, topic=lecturas><>OneMinuteRate
+    name: LecturasBytesInPerSec_total
+    help: Bytes entrantes por segundo del topico correspondiente a lecturas.
+    type: GAUGE
+    labels:
+      topic: "lecturas"
+      
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=BytesInPerSec, topic=lecturas_filtradas><>OneMinuteRate
+    name: LecturasFiltradasBytesInPerSecond
+    help: Bytes entrantes por segundo del topico correspondiente a lecturas filtradas.
+    type: GAUGE
+    labels:
+      topic: "lecturas_filtradas"
+      
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=BytesInPerSec, topic=lecturas_anomalas_alert><>OneMinuteRate
+    name: LecturasAnomalasAlertBytesInPerSecond
+    help: Bytes entrantes por segundo del topico correspondiente a lecturas anomalas que puedan generar alertas.
+    type: GAUGE
+    labels:
+      topic: "lecturas_anomalas_alert"
+    
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=BytesInPerSec, topic=lecturas_gps_alert><>OneMinuteRate
+    name: LecturasGpsAlertBytesInPerSecond
+    help: Bytes entrantes por segundo del topico correspondiente a lecturas cuya señal GPS no existe.
+    type: GAUGE
+    labels:
+      topic: "lecturas_gps_alert"
+    
+  # Mensajes entrantes por segundo
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=MessagesInPerSec, topic=lecturas><>OneMinuteRate
+    name: LecturasMessagesInPerSecond
+    help: Mensajes entrantes por segundo del topico correspondiente a lecturas.
+    type: GAUGE
+    labels:
+      topic: "lecturas"
+   
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=MessagesInPerSec, topic=lecturas_filtradas><>OneMinuteRate
+    name: LecturasFiltradasMessagesInPerSecond
+    help: Mensajes entrantes por segundo del topico correspondiente a lecturas filtradas.
+    type: GAUGE
+    labels:
+      topic: "lecturas_filtradas"
+    
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=MessagesInPerSec, topic=lecturas_anomalas_alert><>OneMinuteRate
+    name: LecturasAnomalasAlertMessagesInPerSecond
+    help: Mensajes entrantes por segundo del topico correspondiente a lecturas anomalas que puedan generar alertas.
+    type: GAUGE
+    labels:
+      topic: "lecturas_anomalas_alert"
+    
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=MessagesInPerSec, topic=lecturas_gps_alert><>OneMinuteRate
+    name: LecturasGpsAlertMessagesInPerSecond
+    help: Mensajes entrantes por segundo del topico correspondiente a lecturas cuya señal GPS no existe.
+    type: GAUGE
+    labels:
+      topic: "lecturas_gps_alert"
+   
+  # Bytes salientes por segundo
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=BytesOutPerSec, topic=lecturas><>OneMinuteRate
+    name: LecturasBytesOutPerSecond
+    help: Bytes salientes por segundo en el topico correspondiente a lecturas.
+    type: GAUGE 
+    labels:
+      topic: "lecturas"
+  
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=BytesOutPerSec, topic=lecturas_filtradas><>OneMinuteRate
+    name: LecturasFiltradasBytesOutPerSecond
+    help: Bytes salientes por segundo en el topico correspondiente a lecturas filtradas.
+    type: GAUGE
+    labels:
+      topic: "lecturas_filtradas"
+    
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=BytesOutPerSec, topic=lecturas_anomalas_alert><>OneMinuteRate
+    name: LecturasAnomalasAlertBytesOutPerSecond
+    help: Bytes salientes por segundo en el topico correspondiente a lecturas anomalas que puedan generar alertas.
+    type: GAUGE
+    labels:
+      topic: "lecturas_anomalas_alert"
+    
+  - pattern: kafka.server<type=BrokerTopicMetrics, name=BytesOutPerSec, topic=lecturas_gps_alert><>OneMinuteRate
+    name: LecturasGpsAlertBytesOutPerSecond
+    help: Bytes salientes por segundo en el topico correspondiente a lecturas cuya señal GPS no existe.
+    type: GAUGE
+    labels:
+      topic: "lecturas_gps_alert"
+ 
