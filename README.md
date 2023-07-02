@@ -3,7 +3,7 @@ Material desarrollado y empleado a lo largo del Trabajo de Fin de Grado: *Diseñ
 
 ------------------------------------------
 
-## Resumen
+## Resumen:
 
 Hoy en día, con el establecimiento de las nuevas tecnologías en las actividades económicas en todos sus sectores, destaca la aplicación del IoT (*Internet of Things*), donde gran parte de los procesos recaen en el trabajo llevado a cabo por un amplio despliegue de dispositivos (computadores, sensores, etc) conectados a la red.
 
@@ -12,6 +12,12 @@ Este proyecto, implementa un servicio de análisis, procesado y monitorización 
 En concreto, aborda la programación de reglas para la gestión de alarmas relativas a aspectos de calidad de los datos; genera un cuadro de mandos (*dashboard*) que permite la monitorización gráfica tanto del rendimiento de la plataforma como de los datos que se publican en ella, así como garantiza en todo este proceso la seguridad del entorno, con diversas políticas tanto de autorización como de autenticación. Además, durante el desarrollo, se barajaron alternativas para la elección del sistema de persistencia y se analizaron sus ventajas e inconvenientes con el foco en la monitorización.
 
 ------------------------------------------
+## Memoria:
+
+*Pendiente de publicación en UCrea*
+
+------------------------------------------
+
 ## Estructura del repositorio:
 * **Certificados Kafka**: Certificados utilizados para autenticar a los *principals* de Kafka. Se encuentran divididos en carpetas para cada *principal*.
 
