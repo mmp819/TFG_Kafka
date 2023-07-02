@@ -32,3 +32,10 @@ Material desarrollado y empleado a lo largo del Trabajo de Fin de Grado: *Diseñ
 
 
 ![](Arquitectura-SolucionSwPropuesta.png)
+
+------------------------------------------
+
+## Fuentes de datos:
+* **Datos ambientales**: https://datos.santander.es/dataset/?id=sensores-ambientales
+* **Datos de juego web** (*Koalas to the Max*): https://static.imply.io/example-data/kttm-nested-v2/kttm-nested-v2-2019-08-25.json.gz
+* **Datos de metro de Oporto** (*MetroPT*): https://zenodo.org/record/6854240
