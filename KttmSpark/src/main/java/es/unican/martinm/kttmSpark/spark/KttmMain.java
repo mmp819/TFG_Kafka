@@ -22,6 +22,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import es.unican.martinm.kttmSpark.cassandra.CassandraConnectionPool;
 import es.unican.martinm.kttmSpark.domain.KttmKafka;
 
+/**
+ * Clase que representa a un consumidor Spark de Kafka, encargado de leer datos en crudo de un 
+ * topico y almacenarlos en Cassandra.
+ * 
+ * @author Mario Martin Perez <mmp819@alumnos.unican.es>
+ * @version 1.0
+ */
 public class KttmMain {
 	
 	private static final String APP_NAME = "KttmSpark";
@@ -35,7 +42,7 @@ public class KttmMain {
 
 	public static void main(String[] args) {
 		
-		long startTime = System.currentTimeMillis();
+		// long startTime = System.currentTimeMillis();
 
 		// Comprueba numero de parametros
 		if (args.length != PARAMETROS_ESPERADOS) {
@@ -88,7 +95,7 @@ public class KttmMain {
 			System.exit(1);
 		}
 		
-		// Inicializar StreamingContext
+		// Inicializa StreamingContext
 		SparkConf spkConf = new SparkConf();
 		spkConf.setAppName(APP_NAME);
 		spkConf.setMaster(sparkMaster);
@@ -99,7 +106,7 @@ public class KttmMain {
 		
 		CassandraConnectionPool.setUP(servidorCassandra, PUERTO_CASSANDRA);
 		
-		// Configurar consumidor Kafka
+		// Configura consumidor Kafka
 		Map<String, Object> kafkaConf = new HashMap<>();
 		kafkaConf.put("bootstrap.servers", servidoresBootstrap);
 		kafkaConf.put("key.deserializer", StringDeserializer.class);
@@ -108,7 +115,7 @@ public class KttmMain {
 		kafkaConf.put("auto.offset.reset", "earliest");
 		kafkaConf.put("enable.auto.commit", false);
 		
-		// Obtener datos JSON de Kafka y convertir a objetos Java
+		// Obtiene datos JSON de Kafka y convierte a objetos Java
 		Collection<String> topicos = Arrays.asList(topico);
 		
 		JavaInputDStream<ConsumerRecord<String, String>> kafkaStream = 
@@ -123,16 +130,14 @@ public class KttmMain {
 		});
 		
 
-		// Almacenamiento en Cassandra
+		// Almacena en Cassandra
 		kttmStream.foreachRDD(rdd -> {
 			rdd.foreachPartition(partitionOfRecords -> {
-				// ConnectionPool is a static, lazily initialized pool of connections
 				CassandraConnectionPool pool = CassandraConnectionPool.getInstance();
 				Session session = pool.getConnection();
 				KttmKafka aux;
 				StringBuilder insert;
 				StringBuilder lang;
-				//int filas = 0;
 				
 				while (partitionOfRecords.hasNext()) {
 					lang = new StringBuilder();
@@ -157,7 +162,7 @@ public class KttmMain {
 						eventData = eventData.replace("'", "''");
 					}
 					
-					
+					// Construye query
 					insert = new StringBuilder();
 					insert.append("INSERT INTO kttm.kttm_kafka ")
 					.append("(timestamp,session,number,event,agent,client_ip,geo_ip,language,")
@@ -194,19 +199,22 @@ public class KttmMain {
 					.append(aux.getTimezoneOffset())
 					.append("');");
 					
+					// Inserta en Cassandra,
 					session.execute(insert.toString());
 				}
 
 				pool.returnConnection(session); 
 			});
 
+			/*
 			long endTime = System.currentTimeMillis();
 	        System.out.println("Tiempo de ingesta: " + (endTime - startTime) + " ms -- " + 
-					((endTime - startTime) / 1000.0) + " s");
+					((endTime - startTime) / 1000.0) + " s");*/
 		});
 				
 		
 		jsc.start();
+		
 		try {
 			jsc.awaitTermination();
 		} catch (InterruptedException e) {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * Clase que representa una medicion del dataset MetroPT.
+ * Clase que representa una tupla del dataset MetroPT.
  * 
  * @author Mario Martin Perez <mmp819@alumnos.unican.es>
  * @version 1.0
@@ -13,7 +13,7 @@ public class TrainRecord implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	/* Medidas */
+	/* Atributos */
 	
 	// Analogico
 	private Timestamp timestamp;

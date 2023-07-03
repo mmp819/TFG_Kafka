@@ -24,6 +24,14 @@ import com.datastax.driver.core.Session;
 import es.unican.martinm.trainSpark.cassandra.CassandraConnectionPool;
 import es.unican.martinm.trainSpark.domain.TrainRecord;
 
+/**
+ * Clase que representa a un productor-consumidor Spark de Kafka, encargado de leer datos en crudo 
+ * de un topico, almacenarlos en Cassandra y filtrarlos a otros topicos asegurando la calidad de los
+ * datos.
+ * 
+ * @author Mario Martin Perez <mmp819@alumnos.unican.es>
+ * @version 1.0
+ */
 public class TrainMain {
 
 	private static final String APP_NAME = "TrainSpark";
@@ -95,7 +103,7 @@ public class TrainMain {
 			System.exit(1);
 		}
 		
-		// Inicializar StreamingContext
+		// Inicializa StreamingContext
 		SparkConf spkConf = new SparkConf();
 		spkConf.setAppName(APP_NAME);
 		spkConf.setMaster(sparkMaster);
@@ -106,7 +114,7 @@ public class TrainMain {
 				
 		CassandraConnectionPool.setUP(servidorCassandra, PUERTO_CASSANDRA);
 		
-		// Configurar consumidor y productor Kafka
+		// Configura consumidor-productor Kafka
 		Map<String, Object> kafkaConf = new HashMap<String, Object>();
 
 		kafkaConf.put("bootstrap.servers", servidoresBootstrap);
@@ -136,7 +144,7 @@ public class TrainMain {
 		// Convierte los registros de Kafka en registros del tipo TrainRecord	
 		JavaDStream<TrainRecord> registros = kafkaStream.map(registro -> new TrainRecord(registro.value()));
 		
-		// Almacenamiento en Cassandra
+		// Almacenamiento en Cassandra y filtrado
 		registros.foreachRDD(rdd -> {
 			rdd.foreachPartition(partitionOfRecords -> {
 				KafkaProducer<String, String> productor = new KafkaProducer<>(kafkaConf);
@@ -172,6 +180,7 @@ public class TrainMain {
 				    	
 				    }
 				    
+				    // Almacenar en Cassandra
 				    query = buildCassandraQuery(CASSANDRA_TABLA, medidas);
 				    session.execute(query);
 				    
@@ -229,7 +238,7 @@ public class TrainMain {
 	}
 	
 	/**
-	 * Construye una fila con todos los datos correspondientes a una medida y separados por comas.
+	 * Construye una fila con todos los datos correspondientes a una tupla y separados por comas.
 	 * 
 	 * @param tr Registro con medidas.
 	 * @return fila construida.

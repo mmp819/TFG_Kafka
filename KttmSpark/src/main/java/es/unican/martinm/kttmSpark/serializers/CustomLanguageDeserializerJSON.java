@@ -10,6 +10,13 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Clase que representa un deserializador para una lista de lenguajes obtenida de un fichero
+ * JSON.
+ * 
+ * @author Mario Martin Perez <mmp819@alumnos.unican.es>
+ * @version 1.0
+ */
 public class CustomLanguageDeserializerJSON extends JsonDeserializer<List<String>>{
 
 	@Override

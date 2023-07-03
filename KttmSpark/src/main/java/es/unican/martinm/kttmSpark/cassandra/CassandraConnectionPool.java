@@ -7,6 +7,12 @@ import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Cluster.Builder;
 import com.datastax.driver.core.Session;
 
+/**
+ * Clase que representa un pool de conexiones a Cassandra.
+ * 
+ * @author Mario Martin Perez <mmp819@alumnos.unican.es>
+ * @version 1.0
+ */
 public class CassandraConnectionPool {
 
 	private static Integer port;
@@ -29,6 +35,11 @@ public class CassandraConnectionPool {
 		cleanUp();
 	}
 
+	/**
+	 * Obtiene instancia del pool.
+	 * 
+	 * @return instancia del pool.
+	 */
 	public static CassandraConnectionPool getInstance() {
 		if (pool == null) {
 			pool = new CassandraConnectionPool();
@@ -36,6 +47,9 @@ public class CassandraConnectionPool {
 		return pool;
 	}
 
+	/**
+	 * Construye un pool de conexiones a Cassandra.
+	 */
 	private CassandraConnectionPool() {
 		this.conns = new LinkedList<Session>();
 		Builder b = Cluster.builder().addContactPoint(node);
@@ -46,6 +60,11 @@ public class CassandraConnectionPool {
 		fillPool();
 	}
 
+	/**
+	 * Obtine una conexion a Cassandra.
+	 * 
+	 * @return conexion a Cassandra.
+	 */
 	public Session getConnection() {
 		if (conns.size() == 0) {
 			fillPool();
@@ -53,13 +72,20 @@ public class CassandraConnectionPool {
 		return conns.remove(0);
 	}
 
+	/**
+	 * Rellena pool de conexiones.
+	 */
 	private void fillPool() {
 		for (int i=0; i<INITIAL_CONNECTIONS; i++) {
 			conns.add(cluster.connect());
 		}
-
 	}
 
+	/**
+	 * Devuelve conexion al pool.
+	 * 
+	 * @param conn conexion a devolver al pool.
+	 */
 	public void returnConnection(Session conn) {
 		if(conns.size()>INITIAL_CONNECTIONS) {
 			conn.close();
@@ -68,6 +94,9 @@ public class CassandraConnectionPool {
 		}
 	}
 	
+	/**
+	 * Cierra el pool.
+	 */
 	public static void cleanUp() {
 		if(cluster != null) {
 			cluster.close();

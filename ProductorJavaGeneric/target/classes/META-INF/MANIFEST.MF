@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 17
+Main-Class: es.unican.martinm.producer.Producer
+Created-By: Maven Integration for Eclipse
+

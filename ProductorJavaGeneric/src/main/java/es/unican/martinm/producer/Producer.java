@@ -12,8 +12,16 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
+/**
+ * Clase que representa a un prodcutor de Kafka, encargado de enviar datos provenientes de un
+ * dataset.
+ * 
+ * @author Mario Martin Perez <mmp819@alumnos.unican.es>
+ * @version 1.0
+ */
 public class Producer {
 
+	// Constantes para verificar parametros
 	private static final int PARAMETROS_ESPERADOS = 3;
 	private static final String REG_EXP_SERVIDORES = "^[a-zA-Z0-9._-]+(:[0-9]+)?$";
 	private static final String REG_EXP_TOPICO = "^[a-zA-Z0-9._-]+$";
@@ -43,7 +51,7 @@ public class Producer {
 		
 		// Comprueba formato de topico
 		if (!topico.matches(REG_EXP_TOPICO)) {
-			System.err.println("Error. El nombre del topico sigue un formato incorrecto. Debe " +
+			System.err.println("Error. El nombre del t\u00f3pico sigue un formato incorrecto. Debe " +
 					"contener \u00fanicamente: may\u00fasculas, min\u00fasculas, n\u00fameros," +
 					"puntos, o guiones.");
 			
@@ -59,7 +67,7 @@ public class Producer {
 			System.exit(1);
 		}
 		
-		// Configurar productor
+		// Configura productor
 		Properties propiedades = new Properties();
 		propiedades.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, servidoresBootstrap);
 		propiedades.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
@@ -77,7 +85,7 @@ public class Producer {
 		// Productor Kafka
 		KafkaProducer<String, String> productor = new KafkaProducer<>(propiedades);
 		
-		// Envio
+		// Lectura de fichero y envio
 		try (BufferedReader reader = new BufferedReader(new FileReader(fichero))) {
 			String string;
 			while ((string = reader.readLine()) != null) {
