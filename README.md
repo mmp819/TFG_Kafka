@@ -14,7 +14,7 @@ En concreto, aborda la programación de reglas para la gestión de alarmas relat
 ------------------------------------------
 ## Memoria:
 
-*Pendiente de publicación en UCrea*
+*https://hdl.handle.net/10902/30033*
 
 ------------------------------------------
 
